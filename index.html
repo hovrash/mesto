@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesto</title>
+    <link rel="stylesheet" href="./pages/index.css">
+  </head>
+  <body class="page">
+    <section class="popup">
+      <div class="popup__container">
+        <div class="popup__close-btn"></div>
+        <p class="popup__title">Редактировать профиль</p>
+        <div class="input">
+          <input type="text" placeholder="Имя" class="input__text input__text_type_name">
+          <input type="text" placeholder="О себе" class="input__text input__text_type_about">
+        </div>
+        <button class="popup__save-btn">Сохранить</button>
+      </div>
+    </section>
+    <header class="header">
+      <img class="header__logo" src="images/logo.png" alt="Логотип Mesto Russia">
+    </header>
+    <main>
+      <section class="profile">
+        <div class="profile__avatar"></div>
+        <div class="profile-info">
+          <div class="profile-info__edit-btn"></div>
+          <h1 class="profile-info__title">Тимур [hovr]</h1>
+          <p class="profile-info__subtitle">Путешественник</p>
+        </div>
+        <div class="profile__add-btn"></div>
+      </section>
+      <section class="elements">
+        <div class="element">
+          <img class="element__image" src="images/mesta/altay.png" alt="Горы Алтая">
+          <div class="element__description">
+            <h2 class="element__title">Алтай</h2>
+            <div class="element__like-btn"></div>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="images/mesta/baykal.png" alt="Льды озера Байкал">
+          <div class="element__description">
+            <h2 class="element__title">Байкал</h2>
+            <div class="element__like-btn"></div>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="images/mesta/karach.png" alt="Горы Карачаево-Черкесии">
+          <div class="element__description">
+            <h2 class="element__title">Карачаево-Черкесия</h2>
+            <div class="element__like-btn"></div>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="images/mesta/kolskpol.png" alt="Горы Кольского полуострова">
+          <div class="element__description">
+            <h2 class="element__title">Кольский полуостров</h2>
+            <div class="element__like-btn"></div>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="images/mesta/krasnkray.png" alt="Горы Красноярского края">
+          <div class="element__description">
+            <h2 class="element__title">Красноярский край</h2>
+            <div class="element__like-btn"></div>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="images/mesta/yakutiya.png" alt="Горы Якутии">
+          <div class="element__description">
+            <h2 class="element__title">Якутия</h2>
+            <div class="element__like-btn"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">© 2022 Mesto Russia</p>
+    </footer>
+    <script src="./pages/script.js"></script>
+  </body>
+</html>

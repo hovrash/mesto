@@ -1,0 +1,12 @@
+.input__text {
+  border: none;
+  border-bottom: 1px solid #cccccc;
+  box-sizing: border-box;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  outline: none;
+}
