@@ -1,5 +1,5 @@
 .element__title {
-  font-family: 'Inter';
+  font-family: 'Inter', 'Arial', sans-serif;
   min-height: 23px;
   max-width: 200px;
   font-style: normal;

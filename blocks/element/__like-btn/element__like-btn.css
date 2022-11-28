@@ -2,6 +2,8 @@
   width: 22px;
   height: 19px;
   background-image: url(../../../images/like-btn.svg);
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
   background-size: 22px 19px;
   background-position: center;
   background-repeat: no-repeat;
