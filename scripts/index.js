@@ -1,7 +1,7 @@
 let popup = document.querySelector('.popup');
 let popupContainer = popup.querySelector('.popup__container');
-let saveBtn = popupContainer.querySelector('.popup__save-btn');
 let inputContainer = popupContainer.querySelector('.input');
+let inputSaveBtn = inputContainer.querySelector('.input__save-btn');
 let inputName = inputContainer.querySelector('.input__text_type_name');
 let inputAbout = inputContainer.querySelector('.input__text_type_about');
 let closeBtn = popupContainer.querySelector('.popup__close-btn');
@@ -21,7 +21,7 @@ function popupClose () {
     popup.classList.remove('popup_opened');
 }
 
-function popupSaveBtn (evt) {
+function saveBtn (evt) {
     evt.preventDefault();
     profileTitle.innerText = inputName.value;
     profileSubtitle.innerText = inputAbout.value;
@@ -32,4 +32,4 @@ profileEditBtn.addEventListener('click', popupOpen);
 
 closeBtn.addEventListener('click', popupClose );
 
-saveBtn.addEventListener('click', popupSaveBtn);
+inputSaveBtn.addEventListener('click', saveBtn);
