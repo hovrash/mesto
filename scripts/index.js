@@ -16,10 +16,10 @@ let cardCloseBtn = newCardContainer.querySelector('.popup__close-btn');
 
 //popup изображение
 let imageFullScreenPopup = document.querySelector('#imagePopup');
-let imagePopupContainer = imageFullScreenPopup.querySelector('.image-popup__container');
-let imagePopup = imagePopupContainer.querySelector('.image-popup__image');
+let imagePopupContainer = imageFullScreenPopup.querySelector('.popup__container_type_fs');
+let imagePopup = imagePopupContainer.querySelector('.popup__image');
 let imageCloseBtn = imagePopupContainer.querySelector('.popup__close-btn');
-let imageTitle = imagePopupContainer.querySelector('.image-popup__title');
+let imageTitle = imagePopupContainer.querySelector('.popup__title_type_fs');
 
 let profile = document.querySelector('.profile');
 let profileInfo = profile.querySelector('.profile-info');
