@@ -1,4 +1,4 @@
-.popup__title_fs {
+.popup__title-fs {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
@@ -9,4 +9,4 @@
     bottom: -20px;
     margin: 0;
     padding: 0;
-  }
+}
