@@ -31,28 +31,28 @@ let profileEditBtn = profileInfo.querySelector('.profile-info__edit-btn');
 let cardContainer = document.querySelector('.elements');
 const initialCards = [
     {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+      name: 'Якутия',
+      link: 'http://www.rosphoto.com/images/u/articles/1406/1_dementievskiy_ivan.jpg'
     },
     {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+      name: 'Кольский полуостров',
+      link: 'http://www.rosphoto.com/images/u/articles/1406/32_maxim_letovaltsev_edit.jpg'
     },
     {
       name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+      link: 'http://www.rosphoto.com/images/u/articles/1406/16_elena_anosova_lk-a.jpg'
+    },
+    {
+      name: 'Кабардино-Балкария',
+      link: 'http://www.rosphoto.com/images/u/articles/1406/28_evgeniy_pikalov.jpg'
+    },
+    {
+      name: 'Алтай',
+      link: 'http://www.rosphoto.com/images/u/articles/1406/4_svetlana_shupenko.jpg'
+    },
+    {
+      name: 'Карачаево-Черкесская республика',
+      link: 'http://www.rosphoto.com/images/u/articles/1406/20_roman_putincev.jpg'
     }
   ];
 
@@ -81,59 +81,51 @@ const initialCards = [
     closePopup(profilePopup);
 }
 
-  function inputSaveCardBtn (evt) {
-    evt.preventDefault();
-    const cardTemplate = document.querySelector('#card-template').content;
-    const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
-    cardElement.querySelector('.element__image').src = inputCardLink.value;
-    cardElement.querySelector('.element__title').textContent = inputCardName.value;
-    deleteCard (cardElement);
-    cardElement.querySelector('.element__like-btn').addEventListener('click', function (evt) {
-      evt.target.classList.toggle('element__like-btn_active');
-    });
-    cardContainer.prepend(cardElement);
-    closePopup(newCardPopup);
+function deleteCard (element) {
+  const deleteBtn = element.querySelector('.element__del-btn');
+    deleteBtn.addEventListener('click', function () {
+      const card = deleteBtn.closest('.element');
+      card.remove()});
 }
 
-  function deleteCard (element) {
-    const deleteBtn = element.querySelector('.element__del-btn');
-      deleteBtn.addEventListener('click', function () {
-        const card = deleteBtn.closest('.element');
-        card.remove();
-      });
-  }
+function addImage (link, name) {
+  const cardTemplate = document.querySelector('#card-template').content;
+  const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
+  cardElement.querySelector('.element__image').src = link;
+  cardElement.querySelector('.element__title').textContent = name;
+  cardElement.querySelector('.element__image').addEventListener('click', function() {
+  imagePopup.src = link;
+  imageTitle.textContent = name;
+  openPopup(imageFullScreenPopup)});
+  cardElement.querySelector('.element__like-btn').addEventListener('click', function (evt) {
+  evt.target.classList.toggle('element__like-btn_active')});
+  deleteCard (cardElement);
+  cardContainer.prepend(cardElement);}
+
+  function inputSaveCardBtn (evt) {
+    evt.preventDefault();
+    addImage(inputCardLink.value, inputCardName.value)
+    closePopup(newCardPopup);}
 
     initialCards.forEach(element => {
-    const cardTemplate = document.querySelector('#card-template').content;
-    const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
-    cardElement.querySelector('.element__image').src = element.link;
-    cardElement.querySelector('.element__title').textContent = element.name;
-    deleteCard (cardElement);
-    cardElement.querySelector('.element__image').addEventListener('click', function() {
-      imagePopup.src = element.link;
-      imageTitle.textContent = element.name;
-      openPopup(imageFullScreenPopup);
-      console.log(imageFullScreenPopup.classList);
-    });
-
-    cardElement.querySelector('.element__like-btn').addEventListener('click', function (evt) {
-      evt.target.classList.toggle('element__like-btn_active');
-    });
-    cardContainer.prepend(cardElement);
-});
+      const cardTemplate = document.querySelector('#card-template').content;
+      const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
+      addImage(element.link, element.name)})
 
 profileEditBtn.addEventListener('click', function () {
-  openPopup(profilePopup);
-});
+  openPopup(profilePopup)});
 
 newCardAddBtn.addEventListener('click', function () {
-  openPopup(newCardPopup);});
+  openPopup(newCardPopup)});
 
 closeBtn.addEventListener('click', function () {
-  closePopup(profilePopup);});
+  closePopup(profilePopup)});
 
 cardCloseBtn.addEventListener('click', function () {
-  closePopup(newCardPopup);});
+  closePopup(newCardPopup)});
+
+imageCloseBtn.addEventListener('click', function () {
+  closePopup(imageFullScreenPopup)});
 
 inputSaveBtn.addEventListener('click', saveProfileBtn);
 
