@@ -13,6 +13,7 @@
 @import url(../blocks/popup/__container-fs/popup__container-fs.css);
 @import url(../blocks/popup/__image/image-popup__image.css);
 @import url(../blocks/popup/__title-fs/popup__title-fs.css);
+@import url(../blocks/popup/_dark/popup_dark.css);
 
 @import url(../blocks/input/input.css);
 @import url(../blocks/input/__text/input__text.css);
