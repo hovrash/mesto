@@ -66,7 +66,7 @@ function closePopup(popupName) {
   popupName.classList.remove('popup_opened')
 };
 
-function profileFormSubmit(evt) {
+function handleProfileForm(evt) {
   evt.preventDefault();
   profileInfoTitle.innerText = profilePopupInputName.value;
   profileInfoSubtitle.innerText = profilePopupInputAbout.value;
@@ -94,7 +94,6 @@ function createCard(link, name) {
   image.src = link;
   image.alt = name;
   image.addEventListener('click', function () {
-    imageFullScreenPopup.classList.add('popup_dark');
     imagePopupPic.src = link;
     imagePopupPic.alt = name;
     imagePopupTitle.textContent = name;
@@ -107,7 +106,7 @@ function createCard(link, name) {
   return cardElement;
 }
 
-function cardFormSubmit(evt) {
+function handleCardForm(evt) {
   evt.preventDefault();
   addImage(newCardPopupInputLink.value, newCardPopupInputName.value)
   newCardPopupInputName.value = "";
@@ -141,6 +140,6 @@ imageCloseBtn.addEventListener('click', function () {
   closePopup(imageFullScreenPopup)
 });
 
-profilePopupForm.addEventListener('submit', profileFormSubmit);
+profilePopupForm.addEventListener('submit', handleProfileForm);
 
-newCardPopupForm.addEventListener('submit', cardFormSubmit);
+newCardPopupForm.addEventListener('submit', handleCardForm);
