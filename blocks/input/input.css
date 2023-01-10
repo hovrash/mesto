@@ -5,6 +5,7 @@
   max-width: 358px;
   min-height: 84px;
   margin: 48px auto 0;
+  position: relative;
 }
 
 @media screen and (max-width: 800px) {

@@ -1,11 +1,11 @@
 //popup для редактирования профиля
 const profilePopup = document.querySelector('#profilePopup');
 const profilePopupContainer = profilePopup.querySelector('.popup__container');
-const profilePopupForm = profilePopupContainer.querySelector('[name="profileEdit"]');
 const profilePopupSaveBtn = profilePopupContainer.querySelector('.input__save-btn');
-const profilePopupInputName = profilePopupContainer.querySelector('[name="profileName"]');
-const profilePopupInputAbout = profilePopupContainer.querySelector('[name="profileAbout"]');
-const profileCloseBtn = profilePopupContainer.querySelector('.popup__close-btn');//разобраться с этой кнопкой, надо сделать одну нам все попапы
+const profileCloseBtn = profilePopupContainer.querySelector('.popup__close-btn');
+const profilePopupForm = document.forms.profileEdit;
+const profilePopupInputName = profilePopupForm.elements.profileName;
+const profilePopupInputAbout = profilePopupForm.elements.profileAbout;
 
 //popup для добавления карточек
 const newCardPopup = document.querySelector('#newCardPopup');
@@ -58,12 +58,32 @@ const initialCards = [
   }
 ];
 
+function closePopupByEsc (evt) {
+  const openPopup = document.querySelector('.popup_opened');
+  if(evt.key === "Escape") {
+    closePopup(openPopup);
+  }
+}
+
+function closePopupByClick (evt) {
+  const openPopup = document.querySelector('.popup_opened');
+  if (evt.target === openPopup) {
+    closePopup(openPopup);
+  };
+}
+
 function openPopup(popupName) {
-  popupName.classList.add('popup_opened')
-};
+  popupName.classList.add('popup_opened');
+  profilePopupSaveBtn.classList.remove('input__save-btn_inactive');
+  document.addEventListener('keydown', closePopupByEsc);
+  document.addEventListener('click', closePopupByClick);
+  };
 
 function closePopup(popupName) {
-  popupName.classList.remove('popup_opened')
+  popupName.classList.remove('popup_opened');
+  hideInputError(profilePopupForm, profilePopupInputName);
+  hideInputError(profilePopupForm, profilePopupInputAbout);
+  newCardPopupSaveBtn.classList.add('input__save-btn_inactive');
 };
 
 function handleProfileForm(evt) {
@@ -109,8 +129,7 @@ function createCard(link, name) {
 function handleCardForm(evt) {
   evt.preventDefault();
   addImage(newCardPopupInputLink.value, newCardPopupInputName.value)
-  newCardPopupInputName.value = "";
-  newCardPopupInputLink.value = "";
+  newCardPopupForm.reset();
   closePopup(newCardPopup);
 }
 

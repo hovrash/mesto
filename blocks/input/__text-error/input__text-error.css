@@ -1,0 +1,15 @@
+.input__text-error {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #FF0000;
+  position: absolute;
+  top: 32px;
+  left: 0;
+}
+
+.input__text-error:last-of-type {
+  top: 89px;
+}

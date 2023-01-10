@@ -31,9 +31,11 @@
       <div class="popup__container">
         <button type="button" class="popup__close-btn"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form name="profileEdit" class="input">
-          <input name="profileName" type="text" placeholder="Имя" class="input__text">
-          <input name="profileAbout" type="text" placeholder="О себе" class="input__text">
+        <form name="profileEdit" class="input" novalidate>
+          <input name="profileName" id="input-name" type="text" placeholder="Имя" class="input__text" required minlength="2" maxlength="40">
+          <span class="input__text-error input-name-error"></span>
+          <input name="profileAbout" id="input-about" type="text" placeholder="О себе" class="input__text" required minlength="2" maxlength="200">
+          <span class="input__text-error input-about-error"></span>
           <button type="submit" class="input__save-btn">Сохранить</button>
         </form>
       </div>
@@ -42,9 +44,11 @@
       <div class="popup__container">
         <button type="button" class="popup__close-btn"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form name="addPhoto" class="input">
-          <input name="cardName" type="text" placeholder="Название" class="input__text">
-          <input name="cardLink" type="text" placeholder="Ссылка на картинку" class="input__text">
+        <form name="addPhoto" class="input" novalidate>
+          <input name="cardName" id="input-cardName" type="text" placeholder="Название" class="input__text" required minlength="2" maxlength="30">
+          <span class="input__text-error input-cardName-error"></span>
+          <input name="cardLink" id="input-cardLink" type="url" placeholder="Ссылка на картинку" class="input__text" required>
+          <span class="input__text-error input-cardLink-error"></span>
           <button type="submit" class="input__save-btn">Создать</button>
         </form>
       </div>
@@ -66,6 +70,7 @@
         <button type="button" class="element__del-btn"></button>
       </article>
     </template>
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
