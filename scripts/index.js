@@ -56,8 +56,8 @@ function openPopup(popupName) {
 
 function closePopup(popupName) {
   popupName.classList.remove('popup_opened');
-  hideInputError(profilePopupForm, profilePopupInputName);
-  hideInputError(profilePopupForm, profilePopupInputAbout);
+  hideInputError(profilePopupForm, profilePopupInputName, validationSettings);
+  hideInputError(profilePopupForm, profilePopupInputAbout, validationSettings);
   newCardPopupSaveBtn.classList.add('input__save-btn_inactive');
   document.removeEventListener('keydown', closePopupByEsc);
 };
