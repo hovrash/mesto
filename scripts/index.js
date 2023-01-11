@@ -21,7 +21,7 @@ const imageFullScreenPopup = document.querySelector('#imagePopup');
 const imagePopupContainer = imageFullScreenPopup.querySelector('.popup__container-fs');
 const imagePopupPic = imagePopupContainer.querySelector('.popup__image');
 const imagePopupTitle = imagePopupContainer.querySelector('.popup__title-fs');
-const imageCloseBtn = imagePopupContainer.querySelector('.popup__close-btn');//разобраться с этой кнопкой, надо сделать одну нам все попапы
+const imageCloseBtn = imagePopupContainer.querySelector('.popup__close-btn');
 
 const profile = document.querySelector('.profile');
 const newCardAddBtn = profile.querySelector('.profile__add-btn');
@@ -31,32 +31,8 @@ const profileInfoSubtitle = profileInfo.querySelector('.profile-info__subtitle')
 const profileEditBtn = profileInfo.querySelector('.profile-info__edit-btn');
 
 const cardContainer = document.querySelector('.elements');
-const initialCards = [
-  {
-    name: 'Якутия',
-    link: 'http://www.rosphoto.com/images/u/articles/1406/1_dementievskiy_ivan.jpg'
-  },
-  {
-    name: 'Кольский полуостров',
-    link: 'http://www.rosphoto.com/images/u/articles/1406/32_maxim_letovaltsev_edit.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'http://www.rosphoto.com/images/u/articles/1406/16_elena_anosova_lk-a.jpg'
-  },
-  {
-    name: 'Кабардино-Балкария',
-    link: 'http://www.rosphoto.com/images/u/articles/1406/28_evgeniy_pikalov.jpg'
-  },
-  {
-    name: 'Алтай',
-    link: 'http://www.rosphoto.com/images/u/articles/1406/4_svetlana_shupenko.jpg'
-  },
-  {
-    name: 'Карачаево-Черкесская республика',
-    link: 'http://www.rosphoto.com/images/u/articles/1406/20_roman_putincev.jpg'
-  }
-];
+
+const popupOverlays = document.querySelectorAll('.popup'); 
 
 function closePopupByEsc (evt) {
   const openPopup = document.querySelector('.popup_opened');
@@ -76,7 +52,6 @@ function openPopup(popupName) {
   popupName.classList.add('popup_opened');
   profilePopupSaveBtn.classList.remove('input__save-btn_inactive');
   document.addEventListener('keydown', closePopupByEsc);
-  document.addEventListener('click', closePopupByClick);
   };
 
 function closePopup(popupName) {
@@ -84,6 +59,7 @@ function closePopup(popupName) {
   hideInputError(profilePopupForm, profilePopupInputName);
   hideInputError(profilePopupForm, profilePopupInputAbout);
   newCardPopupSaveBtn.classList.add('input__save-btn_inactive');
+  document.removeEventListener('keydown', closePopupByEsc);
 };
 
 function handleProfileForm(evt) {
@@ -162,3 +138,7 @@ imageCloseBtn.addEventListener('click', function () {
 profilePopupForm.addEventListener('submit', handleProfileForm);
 
 newCardPopupForm.addEventListener('submit', handleCardForm);
+
+popupOverlays.forEach((overlay) => { 
+  overlay.addEventListener('mousedown', closePopupByClick); 
+})
