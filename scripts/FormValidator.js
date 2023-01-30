@@ -1,4 +1,4 @@
-const validationSettings = {
+export const validationSettings = {
   formSelector: '.input',
   inputSelector: '.input__text',
   submitButtonSelector: '.input__save-btn',
@@ -6,7 +6,7 @@ const validationSettings = {
   inputErrorClass: 'input__text_type_error'
 }
 
-class FormValidator {
+export class FormValidator {
   constructor(set, form) {
     this._formSelector = set.formSelector;
     this._inputSelector = set.inputSelector;
@@ -49,7 +49,7 @@ class FormValidator {
       this._submitButton.classList.add(this._inactiveButtonClass);
       this._submitButton.setAttribute('disabled', true);
     } else { 
-      this._submitButton.remove(this._inactiveButtonClass);
+      this._submitButton.classList.remove(this._inactiveButtonClass);
       this._submitButton.removeAttribute('disabled');
     };
   }
@@ -68,9 +68,3 @@ class FormValidator {
     this._setEventListeners()
   }
 }
-
-const formList = Array.from(document.querySelectorAll('.input'));
-formList.forEach((form) => {
-  const newElement = new FormValidator(validationSettings, form);
-  newElement.enableValidation();
-})

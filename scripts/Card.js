@@ -1,4 +1,6 @@
-const initialCards = [
+import { closePopupByEsc } from "./index.js";
+
+export const initialCards = [
   {
     name: 'Якутия',
     link: 'http://www.rosphoto.com/images/u/articles/1406/1_dementievskiy_ivan.jpg'
@@ -25,7 +27,7 @@ const initialCards = [
   }
 ];
 
-class Card {
+export class Card {
   constructor(data, templateSelector) {
     this._templateSelector = templateSelector;
     this._link = data.link;
@@ -52,6 +54,9 @@ class Card {
   }
 
   _handleOpenPopup() {
+    const imageFullScreenPopup = document.querySelector('#imagePopup');
+    const imagePopupPic = document.querySelector('.popup__image');
+    const imagePopupTitle = document.querySelector('.popup__title-fs');
     imagePopupPic.src = this._link;
     imagePopupPic.alt = this._name;
     imagePopupTitle.textContent = this._name;
@@ -84,9 +89,3 @@ class Card {
     })
   }
 }
-
-initialCards.forEach((item) => {
-  const card = new Card(item, '#card-template');
-  const cardElement = card.generateCard();
-  document.querySelector('.elements').prepend(cardElement);
-})

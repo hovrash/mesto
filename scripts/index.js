@@ -1,3 +1,6 @@
+import { initialCards, Card } from "./Card.js";
+import { validationSettings, FormValidator } from "./FormValidator.js";
+
 //popup для редактирования профиля
 const profilePopup = document.querySelector('#profilePopup');
 const profilePopupContainer = profilePopup.querySelector('.popup__container');
@@ -19,8 +22,6 @@ const newCardCloseBtn = newCardPopupContainer.querySelector('.popup__close-btn')
 //popup изображение
 const imageFullScreenPopup = document.querySelector('#imagePopup');
 const imagePopupContainer = imageFullScreenPopup.querySelector('.popup__container-fs');
-const imagePopupPic = imagePopupContainer.querySelector('.popup__image');
-const imagePopupTitle = imagePopupContainer.querySelector('.popup__title-fs');
 const imageCloseBtn = imagePopupContainer.querySelector('.popup__close-btn');
 
 const profile = document.querySelector('.profile');
@@ -32,8 +33,21 @@ const profileEditBtn = profileInfo.querySelector('.profile-info__edit-btn');
 
 const popupOverlays = document.querySelectorAll('.popup'); 
 
+const formList = Array.from(document.querySelectorAll('.input'));
 
-function closePopupByEsc (evt) {
+formList.forEach((form) => {
+  const newElement = new FormValidator(validationSettings, form);
+  newElement.enableValidation();
+})
+
+initialCards.forEach((item) => {
+  const card = new Card(item, '#card-template');
+  const cardElement = card.generateCard();
+  document.querySelector('.elements').prepend(cardElement);
+});
+
+
+export function closePopupByEsc (evt) {
   const openPopup = document.querySelector('.popup_opened');
   if(evt.key === 'Escape') {
     closePopup(openPopup);
