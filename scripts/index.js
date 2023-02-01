@@ -2,11 +2,11 @@ import { Card } from "./Card.js";
 import { initialCards } from "./initialCards.js";
 import { FormValidator } from "./FormValidator.js";
 import { validationSettings } from "./validationSettings.js";
+import { imageFullScreenPopup, openPopup, closePopup } from "./utils.js";
 
 //popup для редактирования профиля
 const profilePopup = document.querySelector('#profilePopup');
 const profilePopupContainer = profilePopup.querySelector('.popup__container');
-const profilePopupSaveBtn = profilePopupContainer.querySelector('.input__save-btn');
 const profileCloseBtn = profilePopupContainer.querySelector('.popup__close-btn');
 const profilePopupForm = document.forms.profileEdit;
 const profilePopupInputName = profilePopupForm.elements.profileName;
@@ -16,17 +16,13 @@ const profilePopupInputAbout = profilePopupForm.elements.profileAbout;
 const newCardPopup = document.querySelector('#newCardPopup');
 const newCardPopupContainer = newCardPopup.querySelector('.popup__container');
 const newCardPopupForm = newCardPopupContainer.querySelector('[name="addPhoto"]');
-const newCardPopupSaveBtn = newCardPopupContainer.querySelector('.input__save-btn');
 const newCardPopupInputName = newCardPopupContainer.querySelector('[name="cardName"]');
 const newCardPopupInputLink = newCardPopupContainer.querySelector('[name="cardLink"]');
 const newCardCloseBtn = newCardPopupContainer.querySelector('.popup__close-btn');
 
 //popup изображение
-export const imageFullScreenPopup = document.querySelector('#imagePopup');
 const imagePopupContainer = imageFullScreenPopup.querySelector('.popup__container-fs');
 const imageCloseBtn = imagePopupContainer.querySelector('.popup__close-btn');
-export const imagePopupPic = imageFullScreenPopup.querySelector('.popup__image');
-export const imagePopupTitle = imageFullScreenPopup.querySelector('.popup__title-fs');
 const profile = document.querySelector('.profile');
 const newCardAddBtn = profile.querySelector('.profile__add-btn');
 const profileInfo = profile.querySelector('.profile-info');
@@ -61,28 +57,11 @@ function addImage(link, name) {
   renderCard(data, '#card-template');
 };
 
-export function closePopupByEsc(evt) {
-  const openPopup = document.querySelector('.popup_opened');
-  if (evt.key === 'Escape') {
-    closePopup(openPopup);
-  }
-};
-
 function closePopupByClick(evt) {
   const openPopup = document.querySelector('.popup_opened');
   if (evt.target === openPopup) {
     closePopup(openPopup);
   };
-};
-
-export function openPopup(popupName) {
-  popupName.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupByEsc);
-};
-
-function closePopup(popupName) {
-  popupName.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePopupByEsc);
 };
 
 function handleProfileForm(evt) {

@@ -1,4 +1,4 @@
-import { imageFullScreenPopup, imagePopupPic, imagePopupTitle, openPopup } from "./index.js";
+import { imageFullScreenPopup, imagePopupPic, imagePopupTitle, openPopup } from "./utils.js";
 
 export class Card {
   constructor(data, templateSelector) {
