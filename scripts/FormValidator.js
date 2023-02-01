@@ -1,11 +1,3 @@
-export const validationSettings = {
-  formSelector: '.input',
-  inputSelector: '.input__text',
-  submitButtonSelector: '.input__save-btn',
-  inactiveButtonClass: 'input__save-btn_inactive',
-  inputErrorClass: 'input__text_type_error'
-}
-
 export class FormValidator {
   constructor(set, form) {
     this._formSelector = set.formSelector;
@@ -44,14 +36,29 @@ export class FormValidator {
     });
   }
 
+  _disableButtonState() {
+    this._submitButton.classList.add(this._inactiveButtonClass);
+    this._submitButton.setAttribute('disabled', true);
+  }
+
+  _enableButtonState() {
+    this._submitButton.classList.remove(this._inactiveButtonClass);
+    this._submitButton.removeAttribute('disabled');
+  }
+
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
-      this._submitButton.classList.add(this._inactiveButtonClass);
-      this._submitButton.setAttribute('disabled', true);
+      this._disableButtonState();
     } else { 
-      this._submitButton.classList.remove(this._inactiveButtonClass);
-      this._submitButton.removeAttribute('disabled');
+      this._enableButtonState();
     };
+  }
+
+  clearValidation() {
+    this._toggleButtonState();
+    this._inputList.forEach((input) => {
+      this._hideInputError(input);
+    });
   }
 
   _setEventListeners() {
@@ -65,6 +72,6 @@ export class FormValidator {
   }
 
   enableValidation() {
-    this._setEventListeners()
+    this._setEventListeners();
   }
 }

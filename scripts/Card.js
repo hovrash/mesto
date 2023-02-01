@@ -1,31 +1,4 @@
-import { closePopupByEsc } from "./index.js";
-
-export const initialCards = [
-  {
-    name: 'Якутия',
-    link: 'http://www.rosphoto.com/images/u/articles/1406/1_dementievskiy_ivan.jpg'
-  },
-  {
-    name: 'Кольский полуостров',
-    link: 'http://www.rosphoto.com/images/u/articles/1406/32_maxim_letovaltsev_edit.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'http://www.rosphoto.com/images/u/articles/1406/16_elena_anosova_lk-a.jpg'
-  },
-  {
-    name: 'Кабардино-Балкария',
-    link: 'http://www.rosphoto.com/images/u/articles/1406/28_evgeniy_pikalov.jpg'
-  },
-  {
-    name: 'Алтай',
-    link: 'http://www.rosphoto.com/images/u/articles/1406/4_svetlana_shupenko.jpg'
-  },
-  {
-    name: 'Карачаево-Черкесская республика',
-    link: 'http://www.rosphoto.com/images/u/articles/1406/20_roman_putincev.jpg'
-  }
-];
+import { imageFullScreenPopup, imagePopupPic, imagePopupTitle, openPopup } from "./index.js";
 
 export class Card {
   constructor(data, templateSelector) {
@@ -54,14 +27,10 @@ export class Card {
   }
 
   _handleOpenPopup() {
-    const imageFullScreenPopup = document.querySelector('#imagePopup');
-    const imagePopupPic = document.querySelector('.popup__image');
-    const imagePopupTitle = document.querySelector('.popup__title-fs');
     imagePopupPic.src = this._link;
     imagePopupPic.alt = this._name;
     imagePopupTitle.textContent = this._name;
-    imageFullScreenPopup.classList.add('popup_opened');
-    document.addEventListener('keydown', closePopupByEsc);
+    openPopup(imageFullScreenPopup);
   }
 
   _handleDeleteBtn() {
