@@ -15,7 +15,7 @@ const profilePopupInputAbout = profilePopupForm.elements.profileAbout;
 //popup для добавления карточек
 const newCardPopup = document.querySelector('#newCardPopup');
 const newCardPopupContainer = newCardPopup.querySelector('.popup__container');
-const newCardPopupForm = newCardPopupContainer.querySelector('[name="addPhoto"]');
+const newCardPopupForm = document.forms.addPhoto;
 const newCardPopupInputName = newCardPopupContainer.querySelector('[name="cardName"]');
 const newCardPopupInputLink = newCardPopupContainer.querySelector('[name="cardLink"]');
 const newCardCloseBtn = newCardPopupContainer.querySelector('.popup__close-btn');
@@ -32,21 +32,21 @@ const profileEditBtn = profileInfo.querySelector('.profile-info__edit-btn');
 
 const popupOverlays = document.querySelectorAll('.popup');
 
-const formList = Array.from(document.querySelectorAll('.input'));
+const formProfileValidation = new FormValidator(validationSettings, profilePopupForm);
+formProfileValidation.enableValidation();
+const formNeCardValidation = new FormValidator(validationSettings, newCardPopupForm);
+formNeCardValidation.enableValidation();
 
-formList.forEach((form) => {
-  const newElement = new FormValidator(validationSettings, form);
-  newElement.enableValidation();
-});
+const containerInsert = document.querySelector('.elements');
 
 initialCards.forEach((item) => {
-  renderCard(item, '#card-template');
+  renderCard(item, '#card-template', containerInsert);
 });
 
-function renderCard(data, templateSelector) {
+function renderCard(data, templateSelector, container) {
   const card = new Card(data, templateSelector);
   const cardElement = card.generateCard();
-  document.querySelector('.elements').prepend(cardElement);
+  container.prepend(cardElement);
 };
 
 function addImage(link, name) {
@@ -54,7 +54,7 @@ function addImage(link, name) {
     name,
     link
   };
-  renderCard(data, '#card-template');
+  renderCard(data, '#card-template', containerInsert);
 };
 
 function closePopupByClick(evt) {
@@ -78,23 +78,16 @@ function handleCardForm(evt) {
   closePopup(newCardPopup);
 };
 
-function clearValidation () {
-  formList.forEach((form) => {
-    const newElement = new FormValidator(validationSettings, form);
-    newElement.clearValidation();
-  })
-};
-
 function handleOpenProfilePopup() {
   openPopup(profilePopup);
   profilePopupInputName.value = profileInfoTitle.innerText;
   profilePopupInputAbout.value = profileInfoSubtitle.innerText;
-  clearValidation();
+  formProfileValidation.clearValidation();
 };
 
 function handleOpenAddImagePopup () {
   openPopup(newCardPopup);
-  clearValidation();
+  formNeCardValidation.clearValidation();
 };
 
 profileEditBtn.addEventListener('click', () => {

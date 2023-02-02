@@ -34,9 +34,7 @@ export class Card {
   }
 
   _handleDeleteBtn() {
-    const deleteBtn = this._element.querySelector('.element__del-btn');
-    const card = deleteBtn.closest('.element');
-    card.remove()
+    this._element.remove();
   }
 
   _handleLikeBtn() {
